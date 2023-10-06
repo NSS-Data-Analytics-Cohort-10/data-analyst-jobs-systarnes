@@ -114,15 +114,24 @@ WHERE LOWER(title)LIKE '%analyst%';
 
 --Answer: 1669
 
+SELECT DISTINCT LOWER(title)
+From data_analyst_jobs
+WHERE LOWER(title) LIKE '%analyst%';
+
+--Answer: 770
+
+--I ran two different ways because I wanted to eliminate duplicates
+
 -- 12.	How many different job titles do not contain either the word ‘Analyst’ or the word ‘Analytics’? What word do these positions have in common?
 
-SELECT COUNT(DISTINCT(UPPER(title)))
+SELECT DISTINCT(title)
 FROM data_analyst_jobs
-WHERE UPPER(title) not like '%ANALYSTS%' and
-UPPER(title) not like '%ANALYTICS%';
+WHERE LOWER(title) NOT LIKE '%analyst%'
+AND LOWER(title) NOT LIKE '%analytics%';
 
---Answer 694
-
+--Answer: 4
+--Answer: Tableau
+--My team and I discussed this and I realized I added an s to analyst, hence my answer was over 600.
 
 -- **BONUS:**
 -- You want to understand which jobs requiring SQL are hard to fill. Find the number of jobs by industry (domain) that require SQL and have been posted longer than 3 weeks. 
